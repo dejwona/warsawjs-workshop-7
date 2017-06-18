@@ -5,17 +5,17 @@ class MockupElement extends HTMLElement {
        console.log(this.shadow);
 
    }
-   connectedCallback() {
-       console.log('MockupElement#connectedCallback');
-       let $template = document.currentScript.ownerDocument.querySelector('#mockup-template')
-           .content.cloneNode(true);
-       this.shadow.appendChild(template);
-       console.log(this.shadow);
+    connectedCallback() {
+        let template = document.currentScript.ownerDocument.querySelector('#mockup-template')
+            .content.cloneNode(true);
+        this.shadow.appendChild(template);
 
-       this.shadow.querySelector('img').setAttribute('src', this.attributes.xxxx.value);
-       this.shadow.querySelector('h1').textContent = this.attributes.label.value;
-       
-   }
+        let photo = this.attributes.photo.value;
+        this.shadow.querySelector('img').setAttribute('src', photo);
+
+        let label = this.attributes.label.value;
+        this.shadow.querySelector('h1').textContent = label;
+    }
 }
 
 window.customElements.define('mockup-element', MockupElement)
